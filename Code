@@ -1,0 +1,47 @@
+import numpy as np
+
+print('This program finds the radius, the values of D,E,& F,and the center of the circle.')
+print('The program follows the equation of the circle to solve the aforementioned values.')
+print('Enter the corresponding points: ')
+
+x1=int(input("x1= ")); y1=int(input("y1= "))
+print('first point: (',x1,",",y1,')')
+
+x2=int(input("x2= ")); y2=int(input("y2= "))
+print('second point: (',x2,",",y2,')')
+
+x3=int(input("x3= ")); y3=int(input("y3= "))
+print('third point: (',x3,",",y3,')')
+
+ssum1=((pow(x1,2))+(pow(y1,2)));
+ssum2=((pow(x2,2))+(pow(y2,2)));
+ssum3=((pow(x3,2))+(pow(y3,2)));
+
+arrsol1=np.array([[x1,y1,1],[x2,y2,1],[x3,y3,1]]);
+sol1=np.linalg.det(arrsol1);
+
+arrsol2=np.array([[ssum1,y1,1],[ssum2,y2,1],[ssum3,y3,1]]);
+sol2=np.linalg.det(-arrsol2);
+
+arrsol3=np.array([[ssum1,x1,1],[ssum2,x2,1],[ssum3,x3,1]]);
+sol3=np.linalg.det(arrsol3);
+
+arrsol4=np.array([[ssum1,x1,y1],[ssum2,x2,y2],[ssum3,x3,y3]]);
+sol4=np.linalg.det(-arrsol4);
+
+h=round((-sol2/(2*sol1)),4);
+k=round((-sol3/(2*sol1)),4)
+r2=(((pow(sol2,2))+(pow(sol3,2))-(4*sol1*sol4))/(4*(pow(sol1,2))));
+r=round(np.sqrt(r2),4);
+
+D=round((sol2/sol1),4);
+E=round((sol3/sol1),4);
+F=round((sol4/sol1),4);
+
+print('');
+print('The center of the circle is (',h,',',k,')');
+print('The radius of the circle is ',r);
+print('The values of D, E, & F respectively: ')
+print('D= ',D)
+print('E= ',E)
+print('F= ',F)
